@@ -1,0 +1,16 @@
+{
+	"name": "ds_gold_dim_paciente",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "gold",
+			"table": "dim_paciente"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

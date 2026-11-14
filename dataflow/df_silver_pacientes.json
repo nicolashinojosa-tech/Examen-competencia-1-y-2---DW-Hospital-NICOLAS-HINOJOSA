@@ -1,0 +1,98 @@
+{
+	"name": "df_silver_pacientes",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_patients",
+						"type": "DatasetReference"
+					},
+					"name": "sourceBronzePatients"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_patients",
+						"type": "DatasetReference"
+					},
+					"name": "sinkSilverPatients"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivePatientId"
+				},
+				{
+					"name": "filterValidPatients"
+				},
+				{
+					"name": "windowDedup"
+				},
+				{
+					"name": "filterDedup"
+				},
+				{
+					"name": "deriveCleanSilverPatients"
+				},
+				{
+					"name": "selectSilverColumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          patient_id as string,",
+				"          full_name as string,",
+				"          gender as string,",
+				"          date_of_birth as string,",
+				"          phone as string,",
+				"          email as string,",
+				"          address as string,",
+				"          insurance_provider as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> sourceBronzePatients",
+				"sourceBronzePatients derive(patient_id_int = toInteger(trim(patient_id))) ~> derivePatientId",
+				"derivePatientId filter(!isNull(patient_id_int)) ~> filterValidPatients",
+				"filterValidPatients window(over(patient_id_int),",
+				"     asc(patient_id_int, true),",
+				"     rowNumber = rowNumber()) ~> windowDedup",
+				"windowDedup filter(rowNumber == 1) ~> filterDedup",
+				"filterDedup derive(patient_id = patient_id_int,",
+				"          full_name = trim(replace(full_name, 'Â', '')),",
+				"          gender = case(in(['m', 'male'], lower(trim(gender))), 'Male', in(['f', 'female'], lower(trim(gender))), 'Female', toString(null())),",
+				"          date_of_birth = coalesce(toDate(trim(date_of_birth), 'yyyy-MM-dd'), toDate(trim(date_of_birth), 'MM/dd/yyyy'), toDate(trim(date_of_birth), 'MM-dd-yy'), toDate(trim(date_of_birth), 'dd-MMM-yyyy'), toDate(trim(date_of_birth), 'MMMM dd, yyyy')),",
+				"          phone = iif(lower(trim(phone)) == 'unknown' || length(trim(phone)) == 0, toString(null()), trim(phone)),",
+				"          email = iif(isNull(email), toString(null()), replace(replace(replace(trim(email), ' at ', '@'), ',', '.'), 'gmial.com', 'gmail.com')),",
+				"          address = trim(address),",
+				"          insurance_provider = case(isNull(insurance_provider) || length(trim(insurance_provider)) == 0, 'Sin Seguro', like(lower(trim(insurance_provider)), '%cigna%'), 'Cigna', like(lower(trim(insurance_provider)), '%aetna%'), 'Aetna', like(lower(trim(insurance_provider)), '%blue%'), 'BlueCross', like(lower(trim(insurance_provider)), '%medicaid%'), 'Medicaid', like(lower(trim(insurance_provider)), '%medicare%') || like(lower(trim(insurance_provider)), '%medi-care%'), 'Medicare', like(lower(trim(insurance_provider)), '%united%') || like(lower(trim(insurance_provider)), '%uhc%'), 'UnitedHealth', like(lower(trim(insurance_provider)), '%self%'), 'Self-Pay', 'Sin Seguro')) ~> deriveCleanSilverPatients",
+				"deriveCleanSilverPatients select(mapColumn(",
+				"          patient_id,",
+				"          full_name,",
+				"          gender,",
+				"          date_of_birth,",
+				"          phone,",
+				"          email,",
+				"          address,",
+				"          insurance_provider",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> selectSilverColumns",
+				"selectSilverColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sinkSilverPatients"
+			]
+		}
+	}
+}

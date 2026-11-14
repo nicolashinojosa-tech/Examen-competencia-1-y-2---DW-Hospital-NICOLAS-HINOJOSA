@@ -1,0 +1,16 @@
+{
+	"name": "ds_gold_fact_facturacion",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "gold",
+			"table": "fact_facturacion"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "ds_bronze_diagnoses",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "diagnoses"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

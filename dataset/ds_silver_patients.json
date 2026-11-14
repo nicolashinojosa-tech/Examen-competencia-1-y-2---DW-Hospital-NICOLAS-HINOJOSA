@@ -1,0 +1,16 @@
+{
+	"name": "ds_silver_patients",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "silver",
+			"table": "patients"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

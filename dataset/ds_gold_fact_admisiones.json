@@ -1,0 +1,16 @@
+{
+	"name": "ds_gold_fact_admisiones",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "gold",
+			"table": "fact_admisiones"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

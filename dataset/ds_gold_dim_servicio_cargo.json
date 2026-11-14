@@ -1,0 +1,16 @@
+{
+	"name": "ds_gold_dim_servicio_cargo",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"schema": "gold",
+			"table": "dim_servicio_cargo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
