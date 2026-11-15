@@ -3,176 +3,121 @@
     "properties": {
         "activities": [
             {
-                "additionalProperties": null,
-                "compute": {
-                    "computeType": "General",
-                    "coreCount": 8
-                },
-                "continuationSettings": null,
-                "continueOnError": null,
-                "dataFlow": {
-                    "additionalProperties": null,
-                    "datasetParameters": null,
-                    "parameters": null,
-                    "referenceName": "df_silver_pacientes",
-                    "type": "DataFlowReference"
-                },
-                "dependsOn": [],
-                "description": null,
-                "integrationRuntime": null,
-                "linkedServiceName": null,
                 "name": "df_silver_pacientes",
-                "onInactiveMarkAs": null,
+                "type": "ExecuteDataFlow",
+                "dependsOn": [],
                 "policy": {
-                    "additionalProperties": null,
+                    "timeout": "0.12:00:00",
                     "retry": 0,
                     "retryIntervalInSeconds": 30,
-                    "secureInput": false,
                     "secureOutput": false,
-                    "timeout": "0.12:00:00"
+                    "secureInput": false
                 },
-                "runConcurrently": null,
-                "sourceStagingConcurrency": null,
-                "staging": null,
-                "state": null,
-                "traceLevel": "Fine",
-                "type": "ExecuteDataFlow",
-                "userProperties": []
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "df_silver_pacientes",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "computeType": "General",
+                        "coreCount": 8
+                    },
+                    "traceLevel": "Fine"
+                }
             },
             {
-                "additionalProperties": null,
-                "compute": {
-                    "computeType": "General",
-                    "coreCount": 8
-                },
-                "continuationSettings": null,
-                "continueOnError": null,
-                "dataFlow": {
-                    "additionalProperties": null,
-                    "datasetParameters": null,
-                    "parameters": null,
-                    "referenceName": "df_silver_admisiones",
-                    "type": "DataFlowReference"
-                },
+                "name": "df_silver_admisiones",
+                "type": "ExecuteDataFlow",
                 "dependsOn": [
                     {
                         "activity": "df_silver_pacientes",
-                        "additionalProperties": null,
                         "dependencyConditions": [
                             "Succeeded"
                         ]
                     }
                 ],
-                "description": null,
-                "integrationRuntime": null,
-                "linkedServiceName": null,
-                "name": "df_silver_admisiones",
-                "onInactiveMarkAs": null,
                 "policy": {
-                    "additionalProperties": null,
+                    "timeout": "0.12:00:00",
                     "retry": 0,
                     "retryIntervalInSeconds": 30,
-                    "secureInput": false,
                     "secureOutput": false,
-                    "timeout": "0.12:00:00"
+                    "secureInput": false
                 },
-                "runConcurrently": null,
-                "sourceStagingConcurrency": null,
-                "staging": null,
-                "state": null,
-                "traceLevel": "Fine",
-                "type": "ExecuteDataFlow",
-                "userProperties": []
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "df_silver_admisiones",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "computeType": "General",
+                        "coreCount": 8
+                    },
+                    "traceLevel": "Fine"
+                }
             },
             {
-                "additionalProperties": null,
-                "compute": {
-                    "computeType": "General",
-                    "coreCount": 8
-                },
-                "continuationSettings": null,
-                "continueOnError": null,
-                "dataFlow": {
-                    "additionalProperties": null,
-                    "datasetParameters": null,
-                    "parameters": null,
-                    "referenceName": "df_silver_diagnosticos",
-                    "type": "DataFlowReference"
-                },
-                "dependsOn": [
-                    {
-                        "activity": "df_silver_admisiones",
-                        "additionalProperties": null,
-                        "dependencyConditions": [
-                            "Succeeded"
-                        ]
-                    }
-                ],
-                "description": null,
-                "integrationRuntime": null,
-                "linkedServiceName": null,
                 "name": "df_silver_diagnosticos",
-                "onInactiveMarkAs": null,
-                "policy": {
-                    "additionalProperties": null,
-                    "retry": 0,
-                    "retryIntervalInSeconds": 30,
-                    "secureInput": false,
-                    "secureOutput": false,
-                    "timeout": "0.12:00:00"
-                },
-                "runConcurrently": null,
-                "sourceStagingConcurrency": null,
-                "staging": null,
-                "state": null,
-                "traceLevel": "Fine",
                 "type": "ExecuteDataFlow",
-                "userProperties": []
-            },
-            {
-                "additionalProperties": null,
-                "compute": {
-                    "computeType": "General",
-                    "coreCount": 8
-                },
-                "continuationSettings": null,
-                "continueOnError": null,
-                "dataFlow": {
-                    "additionalProperties": null,
-                    "datasetParameters": null,
-                    "parameters": null,
-                    "referenceName": "df_silver_facturacion",
-                    "type": "DataFlowReference"
-                },
                 "dependsOn": [
                     {
                         "activity": "df_silver_admisiones",
-                        "additionalProperties": null,
                         "dependencyConditions": [
                             "Succeeded"
                         ]
                     }
                 ],
-                "description": null,
-                "integrationRuntime": null,
-                "linkedServiceName": null,
-                "name": "df_silver_facturacion",
-                "onInactiveMarkAs": null,
                 "policy": {
-                    "additionalProperties": null,
+                    "timeout": "0.12:00:00",
                     "retry": 0,
                     "retryIntervalInSeconds": 30,
-                    "secureInput": false,
                     "secureOutput": false,
-                    "timeout": "0.12:00:00"
+                    "secureInput": false
                 },
-                "runConcurrently": null,
-                "sourceStagingConcurrency": null,
-                "staging": null,
-                "state": null,
-                "traceLevel": "Fine",
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "df_silver_diagnosticos",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "computeType": "General",
+                        "coreCount": 8
+                    },
+                    "traceLevel": "Fine"
+                }
+            },
+            {
+                "name": "df_silver_facturacion",
                 "type": "ExecuteDataFlow",
-                "userProperties": []
+                "dependsOn": [
+                    {
+                        "activity": "df_silver_admisiones",
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "dataflow": {
+                        "referenceName": "df_silver_facturacion",
+                        "type": "DataFlowReference"
+                    },
+                    "compute": {
+                        "computeType": "General",
+                        "coreCount": 8
+                    },
+                    "traceLevel": "Fine"
+                }
             }
         ],
         "annotations": []
