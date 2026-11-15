@@ -7,13 +7,48 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "facturacion_key",
+				"type": "Int64"
+			},
+			{
+				"name": "billing_id_bk",
+				"type": "Int32"
+			},
+			{
+				"name": "admission_id_bk",
+				"type": "Int32"
+			},
+			{
+				"name": "paciente_key",
+				"type": "Int32"
+			},
+			{
+				"name": "departamento_key",
+				"type": "Int32"
+			},
+			{
+				"name": "servicio_cargo_key",
+				"type": "Int32"
+			},
+			{
+				"name": "fecha_pago_key",
+				"type": "Int32"
+			},
+			{
+				"name": "monto_facturado",
+				"type": "Decimal"
+			},
+			{
+				"name": "conteo_transacciones",
+				"type": "Int32"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[fact_facturacion]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "fact_facturacion",
-		"tableName": null
+			"schema": "gold",
+			"table": "fact_facturacion"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

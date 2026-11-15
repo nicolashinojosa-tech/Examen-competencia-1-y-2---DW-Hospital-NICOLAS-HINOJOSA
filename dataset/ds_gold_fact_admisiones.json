@@ -7,13 +7,52 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "admision_key",
+				"type": "Int64"
+			},
+			{
+				"name": "admission_id_bk",
+				"type": "Int32"
+			},
+			{
+				"name": "paciente_key",
+				"type": "Int32"
+			},
+			{
+				"name": "departamento_key",
+				"type": "Int32"
+			},
+			{
+				"name": "diagnostico_key",
+				"type": "Int32"
+			},
+			{
+				"name": "fecha_ingreso_key",
+				"type": "Int32"
+			},
+			{
+				"name": "fecha_alta_key",
+				"type": "Int32"
+			},
+			{
+				"name": "medico_id",
+				"type": "Int32"
+			},
+			{
+				"name": "dias_estancia",
+				"type": "Int32"
+			},
+			{
+				"name": "conteo_admisiones",
+				"type": "Int32"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[fact_admisiones]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "fact_admisiones",
-		"tableName": null
+			"schema": "gold",
+			"table": "fact_admisiones"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

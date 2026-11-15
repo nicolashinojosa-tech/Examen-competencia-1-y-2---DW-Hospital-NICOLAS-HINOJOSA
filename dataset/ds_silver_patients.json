@@ -44,11 +44,7 @@
 		"typeProperties": {
 			"schema": "silver",
 			"table": "patients"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "silver",
-		"table": "patients",
-		"tableName": null
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

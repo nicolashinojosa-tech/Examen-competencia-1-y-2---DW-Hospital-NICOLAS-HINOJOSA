@@ -7,13 +7,48 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "paciente_key",
+				"type": "Int32"
+			},
+			{
+				"name": "patient_id_bk",
+				"type": "Int32"
+			},
+			{
+				"name": "nombre_completo",
+				"type": "String"
+			},
+			{
+				"name": "genero",
+				"type": "String"
+			},
+			{
+				"name": "fecha_nacimiento",
+				"type": "DateTime"
+			},
+			{
+				"name": "rango_etario",
+				"type": "String"
+			},
+			{
+				"name": "correo_electronico",
+				"type": "String"
+			},
+			{
+				"name": "direccion",
+				"type": "String"
+			},
+			{
+				"name": "proveedor_seguro",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[dim_paciente]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "dim_paciente",
-		"tableName": null
+			"schema": "gold",
+			"table": "dim_paciente"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

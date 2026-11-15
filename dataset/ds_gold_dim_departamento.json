@@ -7,13 +7,20 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "departamento_key",
+				"type": "Int32"
+			},
+			{
+				"name": "nombre_departamento",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[dim_departamento]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "dim_departamento",
-		"tableName": null
+			"schema": "gold",
+			"table": "dim_departamento"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

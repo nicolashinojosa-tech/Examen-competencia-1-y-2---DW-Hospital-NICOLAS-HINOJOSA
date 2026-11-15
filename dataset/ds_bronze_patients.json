@@ -7,13 +7,44 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "patient_id",
+				"type": "String"
+			},
+			{
+				"name": "full_name",
+				"type": "String"
+			},
+			{
+				"name": "gender",
+				"type": "String"
+			},
+			{
+				"name": "date_of_birth",
+				"type": "String"
+			},
+			{
+				"name": "phone",
+				"type": "String"
+			},
+			{
+				"name": "email",
+				"type": "String"
+			},
+			{
+				"name": "address",
+				"type": "String"
+			},
+			{
+				"name": "insurance_provider",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[bronze].[patients]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "patients",
-		"tableName": null
+			"schema": "bronze",
+			"table": "patients"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

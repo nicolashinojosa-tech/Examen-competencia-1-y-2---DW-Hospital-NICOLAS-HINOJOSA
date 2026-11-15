@@ -7,13 +7,64 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "fecha_key",
+				"type": "Int32"
+			},
+			{
+				"name": "fecha_completa",
+				"type": "DateTime"
+			},
+			{
+				"name": "anio",
+				"type": "Int16"
+			},
+			{
+				"name": "trimestre",
+				"type": "Byte"
+			},
+			{
+				"name": "trimestre_nombre",
+				"type": "String"
+			},
+			{
+				"name": "mes",
+				"type": "Byte"
+			},
+			{
+				"name": "mes_nombre",
+				"type": "String"
+			},
+			{
+				"name": "mes_corto",
+				"type": "String"
+			},
+			{
+				"name": "semana_anio",
+				"type": "Byte"
+			},
+			{
+				"name": "dia_mes",
+				"type": "Byte"
+			},
+			{
+				"name": "dia_semana",
+				"type": "Byte"
+			},
+			{
+				"name": "dia_nombre",
+				"type": "String"
+			},
+			{
+				"name": "es_fin_de_semana",
+				"type": "Boolean"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[dim_fecha]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "dim_fecha",
-		"tableName": null
+			"schema": "gold",
+			"table": "dim_fecha"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

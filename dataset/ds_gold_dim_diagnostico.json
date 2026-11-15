@@ -7,13 +7,28 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "diagnostico_key",
+				"type": "Int32"
+			},
+			{
+				"name": "codigo_icd",
+				"type": "String"
+			},
+			{
+				"name": "descripcion_patologia",
+				"type": "String"
+			},
+			{
+				"name": "nivel_severidad",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[dim_diagnostico]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "dim_diagnostico",
-		"tableName": null
+			"schema": "gold",
+			"table": "dim_diagnostico"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -7,13 +7,32 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "diagnosis_id",
+				"type": "String"
+			},
+			{
+				"name": "admission_id",
+				"type": "String"
+			},
+			{
+				"name": "icd_code",
+				"type": "String"
+			},
+			{
+				"name": "diagnosis_description",
+				"type": "String"
+			},
+			{
+				"name": "severity",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[bronze].[diagnoses]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "diagnoses",
-		"tableName": null
+			"schema": "bronze",
+			"table": "diagnoses"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

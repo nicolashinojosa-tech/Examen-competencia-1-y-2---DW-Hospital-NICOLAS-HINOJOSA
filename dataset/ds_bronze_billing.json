@@ -7,13 +7,36 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "billing_id",
+				"type": "String"
+			},
+			{
+				"name": "admission_id",
+				"type": "String"
+			},
+			{
+				"name": "charge_type",
+				"type": "String"
+			},
+			{
+				"name": "amount",
+				"type": "String"
+			},
+			{
+				"name": "payment_status",
+				"type": "String"
+			},
+			{
+				"name": "payment_date",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[bronze].[billing]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "billing",
-		"tableName": null
+			"schema": "bronze",
+			"table": "billing"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

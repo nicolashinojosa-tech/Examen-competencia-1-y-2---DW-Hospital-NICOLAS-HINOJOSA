@@ -7,13 +7,24 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "servicio_cargo_key",
+				"type": "Int32"
+			},
+			{
+				"name": "tipo_cargo",
+				"type": "String"
+			},
+			{
+				"name": "estado_pago",
+				"type": "String"
+			}
+		],
 		"typeProperties": {
-			"tableName": "[gold].[dim_servicio_cargo]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "gold",
-		"table": "dim_servicio_cargo",
-		"tableName": null
+			"schema": "gold",
+			"table": "dim_servicio_cargo"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

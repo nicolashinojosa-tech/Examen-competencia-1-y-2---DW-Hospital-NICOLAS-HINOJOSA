@@ -36,11 +36,7 @@
 		"typeProperties": {
 			"schema": "bronze",
 			"table": "admissions"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "admissions",
-		"tableName": null
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
