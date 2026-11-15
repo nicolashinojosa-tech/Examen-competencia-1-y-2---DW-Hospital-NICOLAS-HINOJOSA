@@ -1,0 +1,180 @@
+{
+    "name": "pl_carga_silver",
+    "properties": {
+        "activities": [
+            {
+                "additionalProperties": null,
+                "compute": {
+                    "computeType": "General",
+                    "coreCount": 8
+                },
+                "continuationSettings": null,
+                "continueOnError": null,
+                "dataFlow": {
+                    "additionalProperties": null,
+                    "datasetParameters": null,
+                    "parameters": null,
+                    "referenceName": "df_silver_pacientes",
+                    "type": "DataFlowReference"
+                },
+                "dependsOn": [],
+                "description": null,
+                "integrationRuntime": null,
+                "linkedServiceName": null,
+                "name": "df_silver_pacientes",
+                "onInactiveMarkAs": null,
+                "policy": {
+                    "additionalProperties": null,
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureInput": false,
+                    "secureOutput": false,
+                    "timeout": "0.12:00:00"
+                },
+                "runConcurrently": null,
+                "sourceStagingConcurrency": null,
+                "staging": null,
+                "state": null,
+                "traceLevel": "Fine",
+                "type": "ExecuteDataFlow",
+                "userProperties": []
+            },
+            {
+                "additionalProperties": null,
+                "compute": {
+                    "computeType": "General",
+                    "coreCount": 8
+                },
+                "continuationSettings": null,
+                "continueOnError": null,
+                "dataFlow": {
+                    "additionalProperties": null,
+                    "datasetParameters": null,
+                    "parameters": null,
+                    "referenceName": "df_silver_admisiones",
+                    "type": "DataFlowReference"
+                },
+                "dependsOn": [
+                    {
+                        "activity": "df_silver_pacientes",
+                        "additionalProperties": null,
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "description": null,
+                "integrationRuntime": null,
+                "linkedServiceName": null,
+                "name": "df_silver_admisiones",
+                "onInactiveMarkAs": null,
+                "policy": {
+                    "additionalProperties": null,
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureInput": false,
+                    "secureOutput": false,
+                    "timeout": "0.12:00:00"
+                },
+                "runConcurrently": null,
+                "sourceStagingConcurrency": null,
+                "staging": null,
+                "state": null,
+                "traceLevel": "Fine",
+                "type": "ExecuteDataFlow",
+                "userProperties": []
+            },
+            {
+                "additionalProperties": null,
+                "compute": {
+                    "computeType": "General",
+                    "coreCount": 8
+                },
+                "continuationSettings": null,
+                "continueOnError": null,
+                "dataFlow": {
+                    "additionalProperties": null,
+                    "datasetParameters": null,
+                    "parameters": null,
+                    "referenceName": "df_silver_diagnosticos",
+                    "type": "DataFlowReference"
+                },
+                "dependsOn": [
+                    {
+                        "activity": "df_silver_admisiones",
+                        "additionalProperties": null,
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "description": null,
+                "integrationRuntime": null,
+                "linkedServiceName": null,
+                "name": "df_silver_diagnosticos",
+                "onInactiveMarkAs": null,
+                "policy": {
+                    "additionalProperties": null,
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureInput": false,
+                    "secureOutput": false,
+                    "timeout": "0.12:00:00"
+                },
+                "runConcurrently": null,
+                "sourceStagingConcurrency": null,
+                "staging": null,
+                "state": null,
+                "traceLevel": "Fine",
+                "type": "ExecuteDataFlow",
+                "userProperties": []
+            },
+            {
+                "additionalProperties": null,
+                "compute": {
+                    "computeType": "General",
+                    "coreCount": 8
+                },
+                "continuationSettings": null,
+                "continueOnError": null,
+                "dataFlow": {
+                    "additionalProperties": null,
+                    "datasetParameters": null,
+                    "parameters": null,
+                    "referenceName": "df_silver_facturacion",
+                    "type": "DataFlowReference"
+                },
+                "dependsOn": [
+                    {
+                        "activity": "df_silver_admisiones",
+                        "additionalProperties": null,
+                        "dependencyConditions": [
+                            "Succeeded"
+                        ]
+                    }
+                ],
+                "description": null,
+                "integrationRuntime": null,
+                "linkedServiceName": null,
+                "name": "df_silver_facturacion",
+                "onInactiveMarkAs": null,
+                "policy": {
+                    "additionalProperties": null,
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureInput": false,
+                    "secureOutput": false,
+                    "timeout": "0.12:00:00"
+                },
+                "runConcurrently": null,
+                "sourceStagingConcurrency": null,
+                "staging": null,
+                "state": null,
+                "traceLevel": "Fine",
+                "type": "ExecuteDataFlow",
+                "userProperties": []
+            }
+        ],
+        "annotations": []
+    }
+}

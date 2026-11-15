@@ -1,16 +1,22 @@
 {
-	"name": "ds_bronze_patients",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_azure_sql_hospital",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"typeProperties": {
-			"schema": "bronze",
-			"table": "patients"
-		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+    "name": "ds_bronze_patients",
+    "properties": {
+        "additionalProperties": null,
+        "annotations": null,
+        "description": null,
+        "folder": null,
+        "linkedServiceName": {
+            "parameters": null,
+            "referenceName": "ls_azure_sql_hospital",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": null,
+        "schema": null,
+        "schemaTypePropertiesSchema": "bronze",
+        "structure": null,
+        "table": "patients",
+        "tableName": null,
+        "type": "AzureSqlTable"
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

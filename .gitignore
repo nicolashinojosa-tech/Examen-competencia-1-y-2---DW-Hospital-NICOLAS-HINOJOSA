@@ -1,0 +1,17 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+
+# Credentials & secrets
+*secret*
+*password*
+*.key
+*.token
+
+# System / logs
+*.log
+_tmp*

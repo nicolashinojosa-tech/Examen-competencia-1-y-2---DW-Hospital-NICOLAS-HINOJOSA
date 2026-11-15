@@ -1,16 +1,53 @@
 {
-	"name": "ds_silver_admissions",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_azure_sql_hospital",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"typeProperties": {
-			"schema": "silver",
-			"table": "admissions"
-		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+    "name": "ds_silver_admissions",
+    "properties": {
+        "additionalProperties": null,
+        "annotations": null,
+        "description": null,
+        "folder": null,
+        "linkedServiceName": {
+            "parameters": null,
+            "referenceName": "ls_azure_sql_hospital",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": null,
+        "schema": [
+            {
+                "name": "admission_id",
+                "physicalType": "int",
+                "type": "Int32"
+            },
+            {
+                "name": "patient_id",
+                "physicalType": "int",
+                "type": "Int32"
+            },
+            {
+                "name": "admission_date",
+                "physicalType": "date",
+                "type": "DateTime"
+            },
+            {
+                "name": "discharge_date",
+                "physicalType": "date",
+                "type": "DateTime"
+            },
+            {
+                "name": "department",
+                "physicalType": "nvarchar",
+                "type": "String"
+            },
+            {
+                "name": "attending_doctor_id",
+                "physicalType": "int",
+                "type": "Int32"
+            }
+        ],
+        "schemaTypePropertiesSchema": "silver",
+        "structure": null,
+        "table": "admissions",
+        "tableName": null,
+        "type": "AzureSqlTable"
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

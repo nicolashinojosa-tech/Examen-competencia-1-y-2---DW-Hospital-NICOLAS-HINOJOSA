@@ -1,16 +1,22 @@
 {
-	"name": "ds_gold_dim_fecha",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_azure_sql_hospital",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"typeProperties": {
-			"schema": "gold",
-			"table": "dim_fecha"
-		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+    "name": "ds_gold_dim_fecha",
+    "properties": {
+        "additionalProperties": null,
+        "annotations": null,
+        "description": null,
+        "folder": null,
+        "linkedServiceName": {
+            "parameters": null,
+            "referenceName": "ls_azure_sql_hospital",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": null,
+        "schema": null,
+        "schemaTypePropertiesSchema": "gold",
+        "structure": null,
+        "table": "dim_fecha",
+        "tableName": null,
+        "type": "AzureSqlTable"
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

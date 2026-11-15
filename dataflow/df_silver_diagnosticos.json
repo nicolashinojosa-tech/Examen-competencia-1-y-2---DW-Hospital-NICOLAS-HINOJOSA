@@ -1,0 +1,122 @@
+{
+    "name": "df_silver_diagnosticos",
+    "properties": {
+        "annotations": [],
+        "description": "",
+        "folder": null,
+        "script": null,
+        "scriptLines": [
+            "source(output(",
+            "    diagnosis_id as string,",
+            "    admission_id as string,",
+            "    icd_code as string,",
+            "    diagnosis_description as string,",
+            "    severity as string",
+            "  ),",
+            "  allowSchemaDrift: true,",
+            "  validateSchema: false,",
+            "  isolationLevel: 'READ_UNCOMMITTED',",
+            "  format: 'table') ~> source1",
+            "source(output(",
+            "    admission_id as integer",
+            "  ),",
+            "  allowSchemaDrift: true,",
+            "  validateSchema: false,",
+            "  isolationLevel: 'READ_UNCOMMITTED',",
+            "  format: 'table') ~> source2",
+            "source1 derive(diagnosis_id = toInteger(trim(diagnosis_id)),",
+            "    admission_id = toInteger(trim(admission_id)),",
+            "    icd_code = upper(trim(replace(icd_code, '-', '.'))),",
+            "    diagnosis_description = trim(diagnosis_description),",
+            "    severity = case(isNull(severity) || length(trim(severity)) == 0, 'Unknown', lower(trim(severity)) == 'mild', 'Mild', lower(trim(severity)) == 'moderate', 'Moderate', lower(trim(severity)) == 'severe', 'Severe', lower(trim(severity)) == 'critical', 'Critical', 'Unknown')) ~> derivedColumn1",
+            "derivedColumn1, source2 join(derivedColumn1@admission_id == source2@admission_id,",
+            "  joinType:'inner',",
+            "  matchType:'exact',",
+            "  ignoreSpaces: false,",
+            "  broadcast: 'auto')~> join1",
+            "join1 sink(allowSchemaDrift: true,",
+            "  validateSchema: false,",
+            "  input(",
+            "    diagnosis_id as integer,",
+            "    admission_id as integer,",
+            "    icd_code as string,",
+            "    diagnosis_description as string,",
+            "    severity as string",
+            "  ),",
+            "  deletable:false,",
+            "  insertable:true,",
+            "  updateable:false,",
+            "  upsertable:false,",
+            "  format: 'table',",
+            "  skipDuplicateMapInputs: true,",
+            "  skipDuplicateMapOutputs: true,",
+            "  mapColumn(",
+            "    diagnosis_id,",
+            "    admission_id = derivedColumn1@admission_id,",
+            "    icd_code,",
+            "    diagnosis_description,",
+            "    severity",
+            "  ),",
+            "  errorHandlingOption: 'stopOnFirstError') ~> sink1"
+        ],
+        "sinks": [
+            {
+                "dataset": {
+                    "parameters": null,
+                    "referenceName": "ds_silver_diagnoses",
+                    "type": "DatasetReference"
+                },
+                "description": null,
+                "flowlet": null,
+                "linkedService": null,
+                "name": "sink1",
+                "rejectedDataLinkedService": null,
+                "schemaLinkedService": null
+            }
+        ],
+        "sources": [
+            {
+                "dataset": {
+                    "parameters": null,
+                    "referenceName": "ds_bronze_diagnoses",
+                    "type": "DatasetReference"
+                },
+                "description": null,
+                "flowlet": null,
+                "linkedService": null,
+                "name": "source1",
+                "schemaLinkedService": null
+            },
+            {
+                "dataset": {
+                    "parameters": null,
+                    "referenceName": "ds_silver_admissions",
+                    "type": "DatasetReference"
+                },
+                "description": null,
+                "flowlet": null,
+                "linkedService": null,
+                "name": "source2",
+                "schemaLinkedService": null
+            }
+        ],
+        "transformations": [
+            {
+                "dataset": null,
+                "description": null,
+                "flowlet": null,
+                "linkedService": null,
+                "name": "derivedColumn1"
+            },
+            {
+                "dataset": null,
+                "description": null,
+                "flowlet": null,
+                "linkedService": null,
+                "name": "join1"
+            }
+        ],
+        "type": "MappingDataFlow"
+    },
+    "type": "Microsoft.DataFactory/factories/dataflows"
+}

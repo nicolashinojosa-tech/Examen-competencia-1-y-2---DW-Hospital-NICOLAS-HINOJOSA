@@ -1,16 +1,22 @@
 {
-	"name": "ds_gold_fact_facturacion",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_azure_sql_hospital",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"typeProperties": {
-			"schema": "gold",
-			"table": "fact_facturacion"
-		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+    "name": "ds_gold_fact_facturacion",
+    "properties": {
+        "additionalProperties": null,
+        "annotations": null,
+        "description": null,
+        "folder": null,
+        "linkedServiceName": {
+            "parameters": null,
+            "referenceName": "ls_azure_sql_hospital",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": null,
+        "schema": null,
+        "schemaTypePropertiesSchema": "gold",
+        "structure": null,
+        "table": "fact_facturacion",
+        "tableName": null,
+        "type": "AzureSqlTable"
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
 }

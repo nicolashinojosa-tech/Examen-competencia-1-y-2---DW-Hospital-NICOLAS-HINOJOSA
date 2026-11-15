@@ -1,16 +1,63 @@
 {
-	"name": "ds_silver_patients",
-	"properties": {
-		"linkedServiceName": {
-			"referenceName": "ls_azure_sql_hospital",
-			"type": "LinkedServiceReference"
-		},
-		"annotations": [],
-		"type": "AzureSqlTable",
-		"typeProperties": {
-			"schema": "silver",
-			"table": "patients"
-		}
-	},
-	"type": "Microsoft.DataFactory/factories/datasets"
+    "name": "ds_silver_patients",
+    "properties": {
+        "additionalProperties": null,
+        "annotations": null,
+        "description": null,
+        "folder": null,
+        "linkedServiceName": {
+            "parameters": null,
+            "referenceName": "ls_azure_sql_hospital",
+            "type": "LinkedServiceReference"
+        },
+        "parameters": null,
+        "schema": [
+            {
+                "name": "patient_id",
+                "physicalType": "int",
+                "type": "Int32"
+            },
+            {
+                "name": "full_name",
+                "physicalType": "nvarchar",
+                "type": "String"
+            },
+            {
+                "name": "gender",
+                "physicalType": "varchar",
+                "type": "String"
+            },
+            {
+                "name": "date_of_birth",
+                "physicalType": "date",
+                "type": "DateTime"
+            },
+            {
+                "name": "phone",
+                "physicalType": "varchar",
+                "type": "String"
+            },
+            {
+                "name": "email",
+                "physicalType": "varchar",
+                "type": "String"
+            },
+            {
+                "name": "address",
+                "physicalType": "nvarchar",
+                "type": "String"
+            },
+            {
+                "name": "insurance_provider",
+                "physicalType": "nvarchar",
+                "type": "String"
+            }
+        ],
+        "schemaTypePropertiesSchema": "silver",
+        "structure": null,
+        "table": "patients",
+        "tableName": null,
+        "type": "AzureSqlTable"
+    },
+    "type": "Microsoft.DataFactory/factories/datasets"
 }
