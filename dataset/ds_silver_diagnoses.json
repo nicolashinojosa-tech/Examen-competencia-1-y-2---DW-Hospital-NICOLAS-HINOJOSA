@@ -1,22 +1,19 @@
 {
-    "name": "ds_silver_diagnoses",
-    "properties": {
-        "additionalProperties": null,
-        "annotations": null,
-        "description": null,
-        "folder": null,
-        "linkedServiceName": {
-            "parameters": null,
-            "referenceName": "ls_azure_sql_hospital",
-            "type": "LinkedServiceReference"
-        },
-        "parameters": null,
-        "schema": null,
-        "schemaTypePropertiesSchema": "silver",
-        "structure": null,
-        "table": "diagnoses",
-        "tableName": null,
-        "type": "AzureSqlTable"
-    },
-    "type": "Microsoft.DataFactory/factories/datasets"
+	"name": "ds_silver_diagnoses",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": "[silver].[diagnoses]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "silver",
+		"table": "diagnoses",
+		"tableName": null
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

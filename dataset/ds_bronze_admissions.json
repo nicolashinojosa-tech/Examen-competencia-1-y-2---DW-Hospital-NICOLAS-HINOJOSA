@@ -1,53 +1,46 @@
 {
-    "name": "ds_bronze_admissions",
-    "properties": {
-        "additionalProperties": null,
-        "annotations": null,
-        "description": null,
-        "folder": null,
-        "linkedServiceName": {
-            "parameters": null,
-            "referenceName": "ls_azure_sql_hospital",
-            "type": "LinkedServiceReference"
-        },
-        "parameters": null,
-        "schema": [
-            {
-                "name": "admission_id",
-                "physicalType": "nvarchar",
-                "type": "String"
-            },
-            {
-                "name": "patient_id",
-                "physicalType": "nvarchar",
-                "type": "String"
-            },
-            {
-                "name": "admission_date",
-                "physicalType": "nvarchar",
-                "type": "String"
-            },
-            {
-                "name": "discharge_date",
-                "physicalType": "nvarchar",
-                "type": "String"
-            },
-            {
-                "name": "department",
-                "physicalType": "nvarchar",
-                "type": "String"
-            },
-            {
-                "name": "attending_doctor_id",
-                "physicalType": "nvarchar",
-                "type": "String"
-            }
-        ],
-        "schemaTypePropertiesSchema": "bronze",
-        "structure": null,
-        "table": "admissions",
-        "tableName": null,
-        "type": "AzureSqlTable"
-    },
-    "type": "Microsoft.DataFactory/factories/datasets"
+	"name": "ds_bronze_admissions",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "admission_id",
+				"type": "String"
+			},
+			{
+				"name": "patient_id",
+				"type": "String"
+			},
+			{
+				"name": "admission_date",
+				"type": "String"
+			},
+			{
+				"name": "discharge_date",
+				"type": "String"
+			},
+			{
+				"name": "department",
+				"type": "String"
+			},
+			{
+				"name": "attending_doctor_id",
+				"type": "String"
+			}
+		],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "admissions"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "bronze",
+		"table": "admissions",
+		"tableName": null
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }

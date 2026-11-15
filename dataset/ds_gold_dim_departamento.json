@@ -1,22 +1,19 @@
 {
-    "name": "ds_gold_dim_departamento",
-    "properties": {
-        "additionalProperties": null,
-        "annotations": null,
-        "description": null,
-        "folder": null,
-        "linkedServiceName": {
-            "parameters": null,
-            "referenceName": "ls_azure_sql_hospital",
-            "type": "LinkedServiceReference"
-        },
-        "parameters": null,
-        "schema": null,
-        "schemaTypePropertiesSchema": "gold",
-        "structure": null,
-        "table": "dim_departamento",
-        "tableName": null,
-        "type": "AzureSqlTable"
-    },
-    "type": "Microsoft.DataFactory/factories/datasets"
+	"name": "ds_gold_dim_departamento",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"typeProperties": {
+			"tableName": "[gold].[dim_departamento]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "gold",
+		"table": "dim_departamento",
+		"tableName": null
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
 }
