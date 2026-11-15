@@ -7,47 +7,44 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"structure": [
+		"schema": [
 			{
 				"name": "patient_id",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "full_name",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "gender",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "date_of_birth",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "phone",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "email",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "address",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "insurance_provider",
-				"type": "String"
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
-			"tableName": "[bronze].[patients]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "patients",
-		"tableName": null
+			"schema": "bronze",
+			"table": "patients"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

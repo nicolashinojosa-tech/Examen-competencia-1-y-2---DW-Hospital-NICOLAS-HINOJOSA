@@ -7,39 +7,36 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"structure": [
+		"schema": [
 			{
 				"name": "billing_id",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "admission_id",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "charge_type",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "amount",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "payment_status",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "payment_date",
-				"type": "String"
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
-			"tableName": "[bronze].[billing]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "bronze",
-		"table": "billing",
-		"tableName": null
+			"schema": "bronze",
+			"table": "billing"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

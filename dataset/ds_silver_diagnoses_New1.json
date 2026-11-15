@@ -32,12 +32,9 @@
 			}
 		],
 		"typeProperties": {
-			"tableName": "[silver].[diagnoses]"
-		},
-		"additionalProperties": null,
-		"schemaTypePropertiesSchema": "silver",
-		"table": "diagnoses",
-		"tableName": null
+			"schema": "silver",
+			"table": "diagnoses"
+		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
