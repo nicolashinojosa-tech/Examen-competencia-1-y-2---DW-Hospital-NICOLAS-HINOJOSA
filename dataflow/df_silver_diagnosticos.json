@@ -1,95 +1,95 @@
 {
-    "name": "df_silver_diagnosticos",
-    "properties": {
-        "type": "MappingDataFlow",
-        "typeProperties": {
-            "sources": [
-                {
-                    "dataset": {
-                        "referenceName": "ds_bronze_diagnoses",
-                        "type": "DatasetReference"
-                    },
-                    "name": "source1"
-                },
-                {
-                    "dataset": {
-                        "referenceName": "ds_silver_admissions",
-                        "type": "DatasetReference"
-                    },
-                    "name": "source2"
-                }
-            ],
-            "sinks": [
-                {
-                    "dataset": {
-                        "referenceName": "ds_silver_diagnoses",
-                        "type": "DatasetReference"
-                    },
-                    "name": "sink1"
-                }
-            ],
-            "transformations": [
-                {
-                    "name": "derivedColumn1"
-                },
-                {
-                    "name": "join1"
-                }
-            ],
-            "scriptLines": [
-                "source(output(",
-                "    diagnosis_id as string,",
-                "    admission_id as string,",
-                "    icd_code as string,",
-                "    diagnosis_description as string,",
-                "    severity as string",
-                "  ),",
-                "  allowSchemaDrift: true,",
-                "  validateSchema: false,",
-                "  isolationLevel: 'READ_UNCOMMITTED',",
-                "  format: 'table') ~> source1",
-                "source(output(",
-                "    admission_id as integer",
-                "  ),",
-                "  allowSchemaDrift: true,",
-                "  validateSchema: false,",
-                "  isolationLevel: 'READ_UNCOMMITTED',",
-                "  format: 'table') ~> source2",
-                "source1 derive(diagnosis_id = toInteger(trim(diagnosis_id)),",
-                "    admission_id = toInteger(trim(admission_id)),",
-                "    icd_code = upper(trim(replace(icd_code, '-', '.'))),",
-                "    diagnosis_description = trim(diagnosis_description),",
-                "    severity = case(isNull(severity) || length(trim(severity)) == 0, 'Unknown', lower(trim(severity)) == 'mild', 'Mild', lower(trim(severity)) == 'moderate', 'Moderate', lower(trim(severity)) == 'severe', 'Severe', lower(trim(severity)) == 'critical', 'Critical', 'Unknown')) ~> derivedColumn1",
-                "derivedColumn1, source2 join(derivedColumn1@admission_id == source2@admission_id,",
-                "  joinType:'inner',",
-                "  matchType:'exact',",
-                "  ignoreSpaces: false,",
-                "  broadcast: 'auto')~> join1",
-                "join1 sink(allowSchemaDrift: true,",
-                "  validateSchema: false,",
-                "  input(",
-                "    diagnosis_id as integer,",
-                "    admission_id as integer,",
-                "    icd_code as string,",
-                "    diagnosis_description as string,",
-                "    severity as string",
-                "  ),",
-                "  deletable:false,",
-                "  insertable:true,",
-                "  updateable:false,",
-                "  upsertable:false,",
-                "  format: 'table',",
-                "  skipDuplicateMapInputs: true,",
-                "  skipDuplicateMapOutputs: true,",
-                "  mapColumn(",
-                "    diagnosis_id,",
-                "    admission_id = derivedColumn1@admission_id,",
-                "    icd_code,",
-                "    diagnosis_description,",
-                "    severity",
-                "  ),",
-                "  errorHandlingOption: 'stopOnFirstError') ~> sink1"
-            ]
-        }
-    }
+	"name": "df_silver_diagnosticos",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_diagnoses_New1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_silver_admissions",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_diagnoses_New1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "join1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          diagnosis_id as string,",
+				"          admission_id as string,",
+				"          icd_code as string,",
+				"          diagnosis_description as string,",
+				"          severity as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source(output(",
+				"          admission_id as integer",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source2",
+				"source1 derive(diagnosis_id = toInteger(trim(diagnosis_id)),",
+				"          admission_id = toInteger(trim(admission_id)),",
+				"          icd_code = upper(trim(replace(icd_code, '-', '.'))),",
+				"          diagnosis_description = trim(diagnosis_description),",
+				"          severity = case(isNull(severity) || length(trim(severity)) == 0, 'Unknown', lower(trim(severity)) == 'mild', 'Mild', lower(trim(severity)) == 'moderate', 'Moderate', lower(trim(severity)) == 'severe', 'Severe', lower(trim(severity)) == 'critical', 'Critical', 'Unknown')) ~> derivedColumn1",
+				"derivedColumn1, source2 join(derivedColumn1@admission_id == source2@admission_id,",
+				"     joinType:'inner',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          diagnosis_id as integer,",
+				"          admission_id as integer,",
+				"          icd_code as string,",
+				"          diagnosis_description as string,",
+				"          severity as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          diagnosis_id,",
+				"          admission_id = derivedColumn1@admission_id,",
+				"          icd_code,",
+				"          diagnosis_description,",
+				"          severity",
+				"     )) ~> sink1"
+			]
+		}
+	}
 }

@@ -1,85 +1,85 @@
 {
-    "name": "df_silver_pacientes",
-    "properties": {
-        "type": "MappingDataFlow",
-        "typeProperties": {
-            "sources": [
-                {
-                    "dataset": {
-                        "referenceName": "ds_bronze_patients",
-                        "type": "DatasetReference"
-                    },
-                    "name": "source1"
-                }
-            ],
-            "sinks": [
-                {
-                    "dataset": {
-                        "referenceName": "ds_silver_patients",
-                        "type": "DatasetReference"
-                    },
-                    "name": "sink1"
-                }
-            ],
-            "transformations": [
-                {
-                    "name": "derivedColumn1"
-                }
-            ],
-            "scriptLines": [
-                "source(output(",
-                "    patient_id as string,",
-                "    full_name as string,",
-                "    gender as string,",
-                "    date_of_birth as string,",
-                "    phone as string,",
-                "    email as string,",
-                "    address as string,",
-                "    insurance_provider as string",
-                "  ),",
-                "  allowSchemaDrift: true,",
-                "  validateSchema: false,",
-                "  isolationLevel: 'READ_UNCOMMITTED',",
-                "  format: 'table') ~> source1",
-                "source1 derive(patient_id = toInteger(trim(patient_id)),",
-                "    full_name = trim(replace(full_name, '', '')),",
-                "    gender = case(in(['m', 'male'], lower(trim(gender))), 'Male', in(['f', 'female'], lower(trim(gender))), 'Female', toString(null())),",
-                "    date_of_birth = coalesce(toDate(trim(date_of_birth), 'yyyy-MM-dd'), toDate(trim(date_of_birth), 'MM/dd/yyyy'), toDate(trim(date_of_birth), 'MM-dd-yy'), toDate(trim(date_of_birth), 'dd-MMM-yyyy'), toDate(trim(date_of_birth), 'MMMM dd, yyyy')),",
-                "    phone = iif(lower(trim(phone)) == 'unknown' || length(trim(phone)) == 0, toString(null()), trim(phone)),",
-                "    email = iif(isNull(email), toString(null()), replace(replace(replace(trim(email), ' at ', '@'), ',', '.'), 'gmial.com', 'gmail.com')),",
-                "    address = trim(address),",
-                "    insurance_provider = case(isNull(insurance_provider) || length(trim(insurance_provider)) == 0, 'Sin Seguro', like(lower(trim(insurance_provider)), '%cigna%'), 'Cigna', like(lower(trim(insurance_provider)), '%aetna%'), 'Aetna', like(lower(trim(insurance_provider)), '%blue%'), 'BlueCross', like(lower(trim(insurance_provider)), '%medicaid%'), 'Medicaid', like(lower(trim(insurance_provider)), '%medicare%') || like(lower(trim(insurance_provider)), '%medi-care%'), 'Medicare', like(lower(trim(insurance_provider)), '%united%') || like(lower(trim(insurance_provider)), '%uhc%'), 'UnitedHealth', like(lower(trim(insurance_provider)), '%self%'), 'Self-Pay', 'Sin Seguro')) ~> derivedColumn1",
-                "derivedColumn1 sink(allowSchemaDrift: true,",
-                "  validateSchema: false,",
-                "  input(",
-                "    patient_id as integer,",
-                "    full_name as string,",
-                "    gender as string,",
-                "    date_of_birth as date,",
-                "    phone as string,",
-                "    email as string,",
-                "    address as string,",
-                "    insurance_provider as string",
-                "  ),",
-                "  deletable:false,",
-                "  insertable:true,",
-                "  updateable:false,",
-                "  upsertable:false,",
-                "  format: 'table',",
-                "  skipDuplicateMapInputs: true,",
-                "  skipDuplicateMapOutputs: true,",
-                "  mapColumn(",
-                "    patient_id,",
-                "    full_name,",
-                "    gender,",
-                "    date_of_birth,",
-                "    phone,",
-                "    email,",
-                "    address,",
-                "    insurance_provider",
-                "  ),",
-                "  errorHandlingOption: 'stopOnFirstError') ~> sink1"
-            ]
-        }
-    }
+	"name": "df_silver_pacientes",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_bronze_patients_New1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ds_silver_patients",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          patient_id as string,",
+				"          full_name as string,",
+				"          gender as string,",
+				"          date_of_birth as string,",
+				"          phone as string,",
+				"          email as string,",
+				"          address as string,",
+				"          insurance_provider as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 derive(patient_id = toInteger(trim(patient_id)),",
+				"          full_name = trim(replace(full_name, '', '')),",
+				"          gender = case(in(['m', 'male'], lower(trim(gender))), 'Male', in(['f', 'female'], lower(trim(gender))), 'Female', toString(null())),",
+				"          date_of_birth = coalesce(toDate(trim(date_of_birth), 'yyyy-MM-dd'), toDate(trim(date_of_birth), 'MM/dd/yyyy'), toDate(trim(date_of_birth), 'MM-dd-yy'), toDate(trim(date_of_birth), 'dd-MMM-yyyy'), toDate(trim(date_of_birth), 'MMMM dd, yyyy')),",
+				"          phone = iif(lower(trim(phone)) == 'unknown' || length(trim(phone)) == 0, toString(null()), trim(phone)),",
+				"          email = iif(isNull(email), toString(null()), replace(replace(replace(trim(email), ' at ', '@'), ',', '.'), 'gmial.com', 'gmail.com')),",
+				"          address = trim(address),",
+				"          insurance_provider = case(isNull(insurance_provider) || length(trim(insurance_provider)) == 0, 'Sin Seguro', like(lower(trim(insurance_provider)), '%cigna%'), 'Cigna', like(lower(trim(insurance_provider)), '%aetna%'), 'Aetna', like(lower(trim(insurance_provider)), '%blue%'), 'BlueCross', like(lower(trim(insurance_provider)), '%medicaid%'), 'Medicaid', like(lower(trim(insurance_provider)), '%medicare%') || like(lower(trim(insurance_provider)), '%medi-care%'), 'Medicare', like(lower(trim(insurance_provider)), '%united%') || like(lower(trim(insurance_provider)), '%uhc%'), 'UnitedHealth', like(lower(trim(insurance_provider)), '%self%'), 'Self-Pay', 'Sin Seguro')) ~> derivedColumn1",
+				"derivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          patient_id as any,",
+				"          full_name as any,",
+				"          gender as any,",
+				"          date_of_birth as timestamp,",
+				"          phone as any,",
+				"          email as any,",
+				"          address as any,",
+				"          insurance_provider as any",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          patient_id,",
+				"          full_name,",
+				"          gender,",
+				"          date_of_birth,",
+				"          phone,",
+				"          email,",
+				"          address,",
+				"          insurance_provider",
+				"     )) ~> sink1"
+			]
+		}
+	}
 }

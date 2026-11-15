@@ -1,0 +1,49 @@
+{
+	"name": "ds_bronze_patients_New1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "patient_id",
+				"type": "nvarchar"
+			},
+			{
+				"name": "full_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "gender",
+				"type": "nvarchar"
+			},
+			{
+				"name": "date_of_birth",
+				"type": "nvarchar"
+			},
+			{
+				"name": "phone",
+				"type": "nvarchar"
+			},
+			{
+				"name": "email",
+				"type": "nvarchar"
+			},
+			{
+				"name": "address",
+				"type": "nvarchar"
+			},
+			{
+				"name": "insurance_provider",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "bronze",
+			"table": "patients"
+		}
+	}
+}

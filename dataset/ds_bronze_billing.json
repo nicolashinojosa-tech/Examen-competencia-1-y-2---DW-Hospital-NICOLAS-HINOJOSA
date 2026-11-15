@@ -7,7 +7,7 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
+		"structure": [
 			{
 				"name": "billing_id",
 				"type": "String"
@@ -34,9 +34,12 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "bronze",
-			"table": "billing"
-		}
+			"tableName": "[bronze].[billing]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "bronze",
+		"table": "billing",
+		"tableName": null
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

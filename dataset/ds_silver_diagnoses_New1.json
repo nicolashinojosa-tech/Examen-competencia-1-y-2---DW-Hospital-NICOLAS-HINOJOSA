@@ -1,0 +1,43 @@
+{
+	"name": "ds_silver_diagnoses_New1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azure_sql_hospital",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "diagnosis_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "admission_id",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "icd_code",
+				"type": "varchar"
+			},
+			{
+				"name": "diagnosis_description",
+				"type": "nvarchar"
+			},
+			{
+				"name": "severity",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[silver].[diagnoses]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "silver",
+		"table": "diagnoses",
+		"tableName": null
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

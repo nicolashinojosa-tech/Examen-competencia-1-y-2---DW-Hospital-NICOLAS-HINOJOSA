@@ -7,7 +7,7 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
+		"structure": [
 			{
 				"name": "diagnosis_id",
 				"type": "String"
@@ -30,9 +30,12 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "bronze",
-			"table": "diagnoses"
-		}
+			"tableName": "[bronze].[diagnoses]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "bronze",
+		"table": "diagnoses",
+		"tableName": null
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

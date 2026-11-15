@@ -10,33 +10,37 @@
 		"schema": [
 			{
 				"name": "admission_id",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "patient_id",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "admission_date",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "discharge_date",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "department",
-				"type": "String"
+				"type": "nvarchar"
 			},
 			{
 				"name": "attending_doctor_id",
-				"type": "String"
+				"type": "nvarchar"
 			}
 		],
 		"typeProperties": {
 			"schema": "bronze",
 			"table": "admissions"
-		}
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "bronze",
+		"table": "admissions",
+		"tableName": null
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }

@@ -7,7 +7,7 @@
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [
+		"structure": [
 			{
 				"name": "patient_id",
 				"type": "String"
@@ -42,9 +42,12 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "bronze",
-			"table": "patients"
-		}
+			"tableName": "[bronze].[patients]"
+		},
+		"additionalProperties": null,
+		"schemaTypePropertiesSchema": "bronze",
+		"table": "patients",
+		"tableName": null
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"
 }
